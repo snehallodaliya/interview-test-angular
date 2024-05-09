@@ -27,7 +27,9 @@ namespace StudentApi
 
             services.AddCors(options => options.AddDefaultPolicy(builder =>
             {
-                builder.WithOrigins("http://localhost:4200", "http://localhost:8100", "http://localhost");
+                builder.WithOrigins("http://localhost:4200", "http://localhost:8100", "http://localhost")
+                .AllowAnyMethod()
+                .AllowAnyHeader(); 
             }));
 
             services.AddSwaggerGen();
@@ -53,7 +55,12 @@ namespace StudentApi
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
             });
-            app.UseCors();
+            app.UseCors(builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            });
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
