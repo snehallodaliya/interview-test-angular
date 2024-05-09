@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { Student } from '../model/student.model'; 
+import { MessageService } from '../service/message.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -8,9 +10,16 @@ import { Student } from '../model/student.model';
 })
 export class HomeComponent implements OnInit {
   public students: Student[] = [];
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {}
+  successMessage: string = '';
+  private subscription: Subscription;
+  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string,private messageService: MessageService) {
+    this.subscription = new Subscription();
+  }
 
   ngOnInit() {
+    this.messageService.getSuccessMessage().subscribe(message => {
+      this.successMessage = message;
+    });
     this.loadStudents();
   }
 
@@ -45,5 +54,8 @@ export class HomeComponent implements OnInit {
     } else {
       return 'text-danger'; // Red color for average grade <= 50
     }
+  }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe(); // Unsubscribe to avoid memory leaks
   }
 }
