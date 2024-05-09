@@ -23,7 +23,7 @@ Please enter/replace your details below.
 | Name | Snehal Lodaliya |
 | Date | 2024-05-09 |
 | Start Time | 01:45+13:00 |
-| Finish Time | 02:15+13:00 |
+| Finish Time | 00:00+13:00 |
 
 ## Requirements
 
