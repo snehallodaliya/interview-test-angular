@@ -20,9 +20,9 @@ We ask that you spend as much of the allotted time to do this test as you can; a
 Please enter/replace your details below.
 | | |
 | - | - |
-| Name | John Smith |
-| Date | 2022-03-21 |
-| Start Time | 00:00+13:00 |
+| Name | Snehal Lodaliya |
+| Date | 2024-05-09 |
+| Start Time | 01:45+13:00 |
 | Finish Time | 02:15+13:00 |
 
 ## Requirements
