@@ -23,6 +23,8 @@ Please enter/replace your details below.
 | Name | Snehal Lodaliya |
 | Date | 2024-05-09 |
 | Start Time | 01:45+13:00 |
+| Small Break Time | Total 1:30 hour around |
+| Finish Time | 09:40+13:00 |
 | Finish Time | 00:00+13:00 |
 
 ## Requirements
@@ -61,4 +63,4 @@ Extras for if you have time:
 - [X] Add delete endpoint to the API
 - [X] Add delete functionality to the frontend
 
-|Snehal Lodaliya| Starting Time: 1:45 PM | Finish Time: |
+|Snehal Lodaliya| Starting Time: 1:45 PM | Finish Time: 9:40 PM|
