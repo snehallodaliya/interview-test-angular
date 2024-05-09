@@ -60,3 +60,5 @@ Extras for if you have time:
 - [X] Implement the `Delete` method of `IStudentService`
 - [X] Add delete endpoint to the API
 - [X] Add delete functionality to the frontend
+
+|Snehal Lodaliya| Starting Time: 1:45 PM | Finish Time: |

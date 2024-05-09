@@ -9,6 +9,8 @@ import { NavMenuComponent } from "./nav-menu/nav-menu.component";
 import { FormsModule } from "@angular/forms";
 import { AddStudentComponent } from './add-student/add-student.component';
 
+import { MessageService } from './service/message.service';
+
 function getBaseUrl() {
   return "http://localhost:5000/";
 }
@@ -25,7 +27,7 @@ function getBaseUrl() {
     HttpClientModule,
     FormsModule // Add FormsModule to imports array
   ],
-  providers: [{ provide: "BASE_URL", useFactory: getBaseUrl, deps: [] }],
+  providers: [{ provide: "BASE_URL", useFactory: getBaseUrl, deps: [] }, MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

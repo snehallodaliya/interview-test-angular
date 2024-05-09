@@ -1,10 +1,11 @@
 <h1 id="tableLabel">Students</h1>
 
 <p *ngIf="!students"><em>Loading...</em></p>
+<div *ngIf="successMessage" class="alert alert-success">
+  {{ successMessage }}
+</div>
 <div class="row">
-  <!-- <div class="col-sm-offset-2 col-sm-10">
-    <button class="btn btn-primary mb-3" (click)="toggleAddForm()">Add Student</button>
-  </div> -->
+  
   <div class="col-sm-offset-2 col-sm-10 align-left">
     <button routerLink="/add-student" class="btn btn-primary mb-3">Add Student</button>
   </div>
@@ -48,5 +49,3 @@
     </tbody>
   </table>
 </div>
-
-<div>

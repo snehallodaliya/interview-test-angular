@@ -1,19 +1,29 @@
 <h2>Add New Student</h2>
-<form #studentForm="ngForm" (ngSubmit)="addStudent()">
+<form #studentForm="ngForm" (ngSubmit)="addStudent()" novalidate>
     <div class="form-group">
         <div class="row">
             <div class="col-md-6">
                 <label for="firstName" class="col-sm-2 col-form-label">First Name:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="firstName" name="firstName"
-                        [(ngModel)]="newStudent.firstName" required>
+                        [(ngModel)]="newStudent.firstName" required #firstName="ngModel">
+                </div>
+                <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="text-danger">
+                    <div *ngIf="firstName.errors?.['required']">
+                        First Name is required.
+                    </div>
                 </div>
             </div>
             <div class="col-md-6">
                 <label for="lastName" class="col-sm-2 col-form-label">Last Name:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="lastName" name="lastName"
-                        [(ngModel)]="newStudent.lastName" required>
+                        [(ngModel)]="newStudent.lastName" required #lastName="ngModel">
+                </div>
+                <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="text-danger">
+                    <div *ngIf="lastName.errors?.['required']">
+                        Last Name is required.
+                    </div>
                 </div>
             </div>
         </div>
@@ -22,15 +32,31 @@
                 <label for="email" class="col-sm-2 col-form-label">Email:</label>
                 <div class="col-sm-10">
                     <input type="email" class="form-control" id="email" name="email" [(ngModel)]="newStudent.email"
-                        required>
+                        required email #email="ngModel">
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+                        <div *ngIf="email.errors?.['required']">
+                            Email is required.
+                        </div>
+                        <div *ngIf="email.errors?.['email']">
+                            Please enter a valid email address.
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6">
                 <label for="major" class="col-sm-2 col-form-label">Major:</label>
                 <div class="col-sm-10">
-                    <select id="major" class="form-control" name="major" [(ngModel)]="newStudent.major" required>
+                    <select id="major" class="form-control" name="major" [(ngModel)]="newStudent.major" required #major="ngModel">
                         <option *ngFor="let subject of subjects" [value]="subject">{{ subject }}</option>
                     </select>
+                    <div *ngIf="major.invalid && (major.dirty || major.touched)" class="text-danger">
+                        <div *ngIf="major.errors?.['required']">
+                          Major is required.
+                        </div>
+                        <div *ngIf="major.value && !subjects.includes(major.value)">
+                          Please select a valid major from the list.
+                        </div>
+                      </div>
                 </div>
             </div>
         </div>
@@ -42,14 +68,17 @@
                     <div class="col-md-4">
                         <label for="newSubjectName" class="col-sm-2 col-form-label">Subject:</label>
                         <select class="form-control" id="newSubjectName" [(ngModel)]="newGrade.subjectName"
-                            name="newSubjectName" required>
+                            name="newSubjectName">
                             <option *ngFor="let subject of subjects" [value]="subject">{{ subject }}</option>
                         </select>
                     </div>
                     <div class="col-md-6">
                         <label for="newScore" class="col-sm-2 col-form-label">Score:</label>
                         <input type="number" class="form-control" id="newScore" [(ngModel)]="newGrade.score"
-                            name="newScore" required>
+                            name="newScore" required min="0" max="100">
+                        <div *ngIf="newGrade.score < 0 || newGrade.score > 100" class="text-danger">
+                            Score must be between 0 and 100.
+                        </div>
                     </div>
                     <div class="col-sm-2">
                         <button type="button" class="btn btn-primary" style="margin-top: 37px;" (click)="addGrade()">Add
@@ -91,7 +120,7 @@
         <!-- Save and Cancel Buttons -->
         <div class="form-group mt-2">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-success">Save Student</button>
+                <button type="submit" class="btn btn-success" [disabled]="!studentForm.form.valid">Save Student</button>
                 <button routerLink="/home" class="btn btn-secondary" style="margin-left: 8px;">Cancel</button>
             </div>
         </div>

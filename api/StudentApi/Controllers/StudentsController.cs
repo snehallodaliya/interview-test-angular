@@ -39,6 +39,11 @@ namespace StudentApi.Controllers
             return reponse.Students;
         }
 
+        // <summary>
+        /// Add the student
+        /// </summary>
+        /// <param name="student"> Student </param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult<Student>> AddStudent(Student student)
         {
@@ -59,6 +64,11 @@ namespace StudentApi.Controllers
             }
         }
 
+        // <summary>
+        /// Delete the student
+        /// </summary>
+        /// <param name="id"> Student Id </param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteStudent(int id)
         {
