@@ -25,7 +25,6 @@ Please enter/replace your details below.
 | Start Time | 01:45+13:00 |
 | Small Break Time | Total 1:30 hour around |
 | Finish Time | 09:40+13:00 |
-| Finish Time | 00:00+13:00 |
 
 ## Requirements
 
