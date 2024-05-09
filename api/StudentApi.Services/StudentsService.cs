@@ -69,11 +69,25 @@ namespace StudentApi.Services
         /// <param name="student"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public bool AddStudent(Student student)
+        public Student AddStudent(Student student)
         {
             student.Id = students.Any() ? students.Max(s => s.Id) + 1 : 1;
+            if (student.Grades == null)
+            {
+                student.Grades = new List<Grades>();
+            }
+
+            // Calculate average grade if grades are provided
+            if (student.Grades.Any())
+            {
+                student.AverageGrade = student.Grades.Average(g => g.Score);
+            }
+            else
+            {
+                student.AverageGrade = 0; // Default average if no grades
+            }
             students.Add(student);
-            return true;
+            return student;
         }
 
         /// <summary>
@@ -82,9 +96,14 @@ namespace StudentApi.Services
         /// <param name="student"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public bool DeleteStudent(Student student)
+        public bool DeleteStudent(int studentId)
         {
-            throw new NotImplementedException();
+            var studentToRemove = students.FirstOrDefault(s => s.Id == studentId);
+            if (studentToRemove != null)
+            {
+               return students.Remove(studentToRemove);
+            }
+            return false;
         }
 
         /// <summary>

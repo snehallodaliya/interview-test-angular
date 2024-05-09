@@ -7,8 +7,8 @@ namespace StudentApi.Services
     {
         List<Student> GetAllStudents();
 
-        bool AddStudent(Student student);
+        Student AddStudent(Student student);
 
-        bool DeleteStudent(Student student);
+        bool DeleteStudent(int studentId);
     }
 }

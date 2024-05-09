@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System;
 
 namespace StudentApi.Controllers
 {
@@ -36,6 +37,36 @@ namespace StudentApi.Controllers
             var reponse = await Mediator.Send(new GetStudentsRequest());
 
             return reponse.Students;
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Student>> AddStudent(Student student)
+        {
+            try
+            {
+                var response = await Mediator.Send(new AddStudentRequest { Student = student });
+                return response != null ? Ok(response) : BadRequest();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error adding student");
+                return StatusCode(500, "Internal server error"); // Return 500 Internal Server Error on exception
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteStudent(int id)
+        {
+            try
+            {
+                var success = await Mediator.Send(new DeleteStudentRequest { StudentId = id });
+                return success ? NoContent() : NotFound();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error deleting student");
+                return StatusCode(500, "Internal server error"); // Return 500 Internal Server Error on exception
+            }
         }
     }
 }

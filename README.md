@@ -49,7 +49,7 @@ You may if you prefer use your preferred frontend technology, if you are unfamil
 - [ ] Add to the student their average grade and flow it through from the API to the frontend
 - [ ] Add a page to the frontend to allow students to be added
 - [X] Add an endpoint to the API to allow students to be added
-- [ ] Implement the `Add` method of the `IStudentService`
+- [X] Implement the `Add` method of the `IStudentService`
 - [ ] Style the display of the average grade so that it has three colorations:
   - Green: average grade greater than 80%
   - Orange: average grade less than 80% and greater than 50%
@@ -57,6 +57,6 @@ You may if you prefer use your preferred frontend technology, if you are unfamil
 
 Extras for if you have time:
 
-- [ ] Implement the `Delete` method of `IStudentService`
-- [ ] Add delete endpoint to the API
+- [X] Implement the `Delete` method of `IStudentService`
+- [X] Add delete endpoint to the API
 - [ ] Add delete functionality to the frontend
