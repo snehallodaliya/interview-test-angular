@@ -42,6 +42,11 @@ namespace StudentApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Student>> AddStudent(Student student)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            
             try
             {
                 var response = await Mediator.Send(new AddStudentRequest { Student = student });
