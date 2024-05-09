@@ -1,6 +1,8 @@
 ﻿using StudentApi.Models.Students;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 
 namespace StudentApi.Services
 {
@@ -12,25 +14,52 @@ namespace StudentApi.Services
         {
             students.Add(new Student
             {
+                Id = 1,
                 FirstName = "Marty",
                 LastName = "McFly",
                 Email = "back.future@test.com",
-                Major = "History"
+                Major = "History",
+                Grades = new List<Grades>
+                {
+                    new Grades { SubjectName = "Math", Score = 85 },
+                    new Grades { SubjectName = "Physics", Score = 90 },
+                    new Grades { SubjectName = "History", Score = 78 },
+                    new Grades { SubjectName = "PE", Score = 78 }
+                },
+                AverageGrade = 90
             });
 
             students.Add(new Student {
+                Id = 2,
                 FirstName = "Emmett",
                 LastName = "Brown",
                 Email = "dr.brown@test.com",
-                Major = "Physics"
+                Major = "Physics",
+                Grades = new List<Grades>
+                {
+                    new Grades { SubjectName = "Math", Score = 85 },
+                    new Grades { SubjectName = "Physics", Score = 90 },
+                    new Grades { SubjectName = "History", Score = 78 },
+                    new Grades { SubjectName = "PE", Score = 78 }
+                },
+                AverageGrade = 90
             });
 
             students.Add(new Student
             {
+                Id = 3,
                 FirstName = "Biff",
                 LastName = "Tannen",
                 Email = "biff@test.com",
-                Major = "PE"
+                Major = "PE",
+                Grades = new List<Grades>
+                {
+                    new Grades { SubjectName = "Math", Score = 85 },
+                    new Grades { SubjectName = "Physics", Score = 90 },
+                    new Grades { SubjectName = "History", Score = 78 },
+                    new Grades { SubjectName = "PE", Score = 78 }
+                },
+                AverageGrade= 90,
             });
         }
 
@@ -42,7 +71,9 @@ namespace StudentApi.Services
         /// <exception cref="NotImplementedException"></exception>
         public bool AddStudent(Student student)
         {
-            throw new NotImplementedException();
+            student.Id = students.Any() ? students.Max(s => s.Id) + 1 : 1;
+            students.Add(student);
+            return true;
         }
 
         /// <summary>
