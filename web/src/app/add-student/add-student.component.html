@@ -1,0 +1,99 @@
+<h2>Add New Student</h2>
+<form #studentForm="ngForm" (ngSubmit)="addStudent()">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="firstName" class="col-sm-2 col-form-label">First Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="firstName" name="firstName"
+                        [(ngModel)]="newStudent.firstName" required>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="lastName" class="col-sm-2 col-form-label">Last Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="lastName" name="lastName"
+                        [(ngModel)]="newStudent.lastName" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="email" class="col-sm-2 col-form-label">Email:</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" id="email" name="email" [(ngModel)]="newStudent.email"
+                        required>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="major" class="col-sm-2 col-form-label">Major:</label>
+                <div class="col-sm-10">
+                    <select id="major" class="form-control" name="major" [(ngModel)]="newStudent.major" required>
+                        <option *ngFor="let subject of subjects" [value]="subject">{{ subject }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <!-- Grade List Input -->
+        <div class="form-group">
+            <div class="col-sm-10">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="newSubjectName" class="col-sm-2 col-form-label">Subject:</label>
+                        <select class="form-control" id="newSubjectName" [(ngModel)]="newGrade.subjectName"
+                            name="newSubjectName" required>
+                            <option *ngFor="let subject of subjects" [value]="subject">{{ subject }}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="newScore" class="col-sm-2 col-form-label">Score:</label>
+                        <input type="number" class="form-control" id="newScore" [(ngModel)]="newGrade.score"
+                            name="newScore" required>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="button" class="btn btn-primary" style="margin-top: 37px;" (click)="addGrade()">Add
+                            Grade</button>
+                    </div>
+                </div>
+                <h3 for="gradeList" *ngIf="newStudent.grades && newStudent.grades.length > 0"
+                    class="col-sm-2 col-form-label">Grade List:</h3>
+                <table class="table table-bordered mt-2" *ngIf="newStudent.grades && newStudent.grades.length > 0">
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>Score</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let grade of newStudent.grades; let i = index">
+                            <td>
+                                <select class="form-control" [(ngModel)]="grade.subjectName" name="subjectName{{ i }}"
+                                    required>
+                                    <option *ngFor="let subject of subjects" [value]="subject">{{ subject }}</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" [(ngModel)]="grade.score" name="score{{ i }}"
+                                    required>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger" (click)="removeGrade(i)">Remove</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <!-- Save and Cancel Buttons -->
+        <div class="form-group mt-2">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success">Save Student</button>
+                <button routerLink="/home" class="btn btn-secondary" style="margin-left: 8px;">Cancel</button>
+            </div>
+        </div>
+    </div>
+</form>

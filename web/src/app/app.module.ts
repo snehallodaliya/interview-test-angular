@@ -7,18 +7,20 @@ import { RouterModule } from "@angular/router";
 import { HomeComponent } from "./home/home.component";
 import { NavMenuComponent } from "./nav-menu/nav-menu.component";
 import { FormsModule } from "@angular/forms";
+import { AddStudentComponent } from './add-student/add-student.component';
 
 function getBaseUrl() {
   return "http://localhost:5000/";
 }
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, NavMenuComponent],
+  declarations: [AppComponent, HomeComponent, NavMenuComponent, AddStudentComponent],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
       { path: "", component: HomeComponent, pathMatch: "full" },
       { path: "home", component: HomeComponent, pathMatch: "full" },
+      { path: 'add-student', component: AddStudentComponent, pathMatch: "full" }
     ]),
     HttpClientModule,
     FormsModule // Add FormsModule to imports array
